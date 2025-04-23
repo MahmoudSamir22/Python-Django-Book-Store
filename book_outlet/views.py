@@ -8,12 +8,12 @@ def index(request):
         "books": books
     })
 
-def book_detail(request, id):
-    book = Book.objects.get(pk=id)
-    print(book)
+def book_detail(request, slug):
+    book = Book.objects.get(slug=slug)
     return render(request, "book_detail.html", {
         "title": book.title,
         "author": book.author,
         "rating": book.rating,
-        "is_bestseller": book.is_bestselling
+        "is_bestseller": book.is_bestselling,
+        "slug": book.slug
     })

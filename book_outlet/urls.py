@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 urlpatterns = [
     path('', views.index),
-    path('<id>', views.book_detail)
+    path('<slug:slug>', views.book_detail)
 ]
