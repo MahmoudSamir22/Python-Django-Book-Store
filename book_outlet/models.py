@@ -2,6 +2,10 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.text import slugify
 
+class Country(models.Model):
+    name = models.CharField(max_length=80)
+    code = models.CharField(max_length=3)
+
 class Address(models.Model):
     street = models.CharField(max_length=80)
     postal_code =models.CharField(max_length=5)
@@ -30,6 +34,7 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
     is_bestselling = models.BooleanField(default=False)
     slug = models.SlugField(default="", blank=True, null=False, db_index=True)
+    country = models.ManyToManyField(Country)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
