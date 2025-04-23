@@ -7,6 +7,12 @@ class Address(models.Model):
     postal_code =models.CharField(max_length=5)
     city = models.CharField(max_length=50)
 
+    def __str__(self):
+        return f"{self.street},{self.postal_code},{self.city.capitalize()}"
+    
+    class Meta:
+        verbose_name_plural = "Address"
+
 # Create your models here.
 class Author(models.Model):
     first_name = models.CharField(max_length=100)
